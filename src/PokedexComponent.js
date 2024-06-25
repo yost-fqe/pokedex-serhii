@@ -18,21 +18,22 @@ const Pokedex = () => {
       setLoading(true);
       // function to fetch names and url endpoints for individual pokemon within each generation
       try {
-        // make the call to the api and format the response to json (it likely already is in json but in the odd case that it isn't json is easy to work with for getting to nested objects)
+        // make the call to the api and format the response to json (it likely already is in json but in the odd case that it isn't, json is easy to work with for getting to nested objects)
         const response = await fetch(`https://pokeapi.co/api/v2/generation/${generation}/`);
         const data = await response.json();
-        // define a variable for the specific nested property we are looking for (name + url)
+        // define a variable for the specific nested property we are looking for (name + url are the values in the pokemon_species object)
         const pokemonSpecies = data.pokemon_species;
 
         // loop over the returned response from the initial call to get the detailed data for each pokemon
-        const detailedPokemonPromises = pokemonSpecies.map(async (pokemon) => { // what is in (pokemon) can be called whatever you want it to be. for clarity I named it pokemon, but 'index' is common.
-          // this grabs the id from the end of the url string
+        const detailedPokemonPromises = pokemonSpecies.map(async (pokemon) => { // (pokemon) can be called whatever you want it to be. for clarity I named it pokemon, but '(index)' is common.
+          // this grabs the id from the end of the url string, try console.log(pokemon.url)
           const id = pokemon.url.split('/').filter(Boolean).pop();
           try {
             // use the id we just grabed from the returned initial call to get the appropriate details
             const pokemonDetailResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
             const pokemonDetailData = await pokemonDetailResponse.json();
             // define the data structure that I want to display to the user with the values from the second api call. 
+            console.log('pokemonDetailData ==>', pokemonDetailData) // this will show you what other properties are available 
             // notice .map() appearing again when certain properties are arrays of values instead of single values
             return {
               id: pokemonDetailData.id,
