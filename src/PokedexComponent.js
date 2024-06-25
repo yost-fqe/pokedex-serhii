@@ -79,6 +79,10 @@ export default function Pokedex() {
     setGeneration(Number(event.target.value));
   };
 
+  const convertMetric = (metric) => {
+    // TODO: logic to convert decimeters in imperial system
+  }
+
   // if loading state is true, we return something other than a blank screen.
   if (loading) {
     return <div className="loading">Loading...</div>;
