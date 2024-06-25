@@ -79,8 +79,8 @@ export default function Pokedex() {
     setGeneration(Number(event.target.value));
   };
 
-  const convertMetric = (metric) => {
-    // TODO: logic to convert decimeters in imperial system
+  const convertMetric = (metric, type) => {
+    // TODO: logic to convert metric into imperial for either height(decimetres) or weight(hectograms)
   }
 
   // if loading state is true, we return something other than a blank screen.
