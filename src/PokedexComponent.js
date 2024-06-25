@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './Pokedex.css';
 
 // define component
-const Pokedex = () => {
+export default function Pokedex() {
   // define state
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -128,5 +128,3 @@ const Pokedex = () => {
     </div>
   );
 };
-
-export default Pokedex;
