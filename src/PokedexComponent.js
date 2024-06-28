@@ -79,8 +79,16 @@ export default function Pokedex() {
     setGeneration(Number(event.target.value));
   };
 
+  // helper function to conver metric to imperial units
   const convertMetric = (metric, type) => {
-    // TODO: logic to convert metric into imperial for either height(decimetres) or weight(hectograms)
+    if (type === 'height') {
+      return (metric / 0.254).toFixed(2)
+    } else if (type === 'weight') {
+      return (metric / 4.53592).toFixed(2)
+    } else {
+      console.log('idk how you did this')
+    }
+
   }
 
   // if loading state is true, we return something other than a blank screen.
@@ -113,8 +121,8 @@ export default function Pokedex() {
             <img src={pokemon.image} alt={pokemon.name} className="pokemon-image" />
             <div className="pokemon-info">
               <h2>{pokemon.name} (ID: {pokemon.id})</h2>
-              <p>Height: {pokemon.height} decimetres</p>
-              <p>Weight: {pokemon.weight} hectograms</p>
+              <p>Height: {convertMetric(pokemon.height, 'height')} inches</p>
+              <p>Weight: {convertMetric(pokemon.weight, 'weight')} lbs</p>
               <p>Abilities: {pokemon.abilities.join(', ')}</p>
               <p>Types: {pokemon.types.join(', ')}</p>
               <div>
